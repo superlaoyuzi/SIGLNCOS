@@ -1,5 +1,5 @@
 ##SIGLNCOS
-SIGLNCOS <- function(file = NULL, Tissue = NULL, Cell_annotation = NULL, GENCODE = ftq, nFeature_RNA_min = 200, nFeature_RNA_max = 2500, percent.mt_max = 10, P_threshold = 0.05){
+SIGLNCOS <- function(file = NULL, Tissue = NULL, Cell_annotation = NULL, nFeature_RNA_min = 200, nFeature_RNA_max = 2500, percent.mt_max = 10, P_threshold = 0.05){
   # ---- Confirm data integrity ----
   if (length(file) != 1) {
     if (length(file) == 0) {
@@ -16,9 +16,9 @@ SIGLNCOS <- function(file = NULL, Tissue = NULL, Cell_annotation = NULL, GENCODE
   }
   
   # ---- library packages ----
-  lapply(c("Seurat","dplyr","psych","clusterProfiler","SingleR","celldex"), 
-         library, character.only = T)
-  
+  lapply(c("Seurat","dplyr","psych","clusterProfiler","SingleR","celldex"),function(x){
+    suppressPackageStartupMessages(library(x,character.only = T))
+  })
   # ---- load scRNA-seq and reference data ----
   scdata<-Read10X(file) ##barcodes.tsv.gz,features.tsv.gz,matrix.mts.gz
   
@@ -54,24 +54,26 @@ SIGLNCOS <- function(file = NULL, Tissue = NULL, Cell_annotation = NULL, GENCODE
   saveRDS(SO,"./Seurat_Object.rds")
   
   ##gene annotation with GENCODE
-  ftq<-readRDS("./contaxt/GENCODE.rds")
+  ftq<-readRDS("./context/GENCODE.rds")
   lncRNA<-ftq%>%dplyr::select(c("type","gene_type","gene_name"))%>%filter(type == "gene" & gene_type == "lncRNA")%>%arrange("gene_name")
   lncRNA<-intersect(lncRNA$gene_name,rownames(SO))##lncRNA
   mRNA<-ftq%>%dplyr::select(c("type","gene_type","gene_name"))%>%filter(type == "gene" & gene_type == "protein_coding")%>%arrange("gene_name")
   mRNA<-intersect(mRNA$gene_name,rownames(SO))##mRNA
-  
+  print("Stage 1 completed: Seurat_Object have been saved as Seurat_Object.rds")
   
 
   # ---- Stage2:Identifying cellular-signature lncRNA ----
   
   Idents(SO)<-SO$celltype##Calculated according to cell type
   SO.markers<-FindAllMarkers(SO,only.pos = T,)##Only high expression data were selected(avglog2FC>0.25,min.pct = 0.1)
-  SO.markers$tumor<-tumor
+  SO.markers$tumor<-Tissue
   SO.markers<-subset(SO.markers,p_val_adj < P_threshold)##Genes with significant corrected p-values were selected
-  SO.markers$tumor<-tumor
+  SO.markers$tumor<-Tissue
   lnc.markers<-SO.markers[which(SO.markers$gene %in% lncRNA),]##cellular_signature_lncRNA
   write.table(lnc.markers,"cellular_signature_lncRNA.txt",sep = "\t",quote = F,col.names = T,row.names = F)
   mRNA.markers<-SO.markers[which(SO.markers$gene %in% mRNA),]##cellular_signature_mRNA
+  
+  print("Stage 2 completed: clncRNA have been saved as cellular_signature_lncRNA.txt")
   
   # ---- Stage3:Functional enrichment of clncRNAs ----
   
@@ -82,8 +84,7 @@ SIGLNCOS <- function(file = NULL, Tissue = NULL, Cell_annotation = NULL, GENCODE
   
   if(package_type==5){
     exp.data<-GetAssayData(object = SO, slot = "data")##Extracting expression profiles
-  }
-  else{
+  }else{
     exp.data<-GetAssayData(object = SO, layer  = "data")##Extracting expression profiles
   }
 
@@ -93,7 +94,7 @@ SIGLNCOS <- function(file = NULL, Tissue = NULL, Cell_annotation = NULL, GENCODE
   cor_data<-lapply(clncRNA,function(x){
     cell<-as.vector(subset(lnc.markers,gene == x)$cluster)
     aa<-lapply(cell,function(z){
-      cellid<-colnames(subset(SO,cell_type == z))
+      cellid<-colnames(subset(SO,celltype == z))
       clnc.exp2<-clnc.exp[,cellid]
       mRNA.exp2<-mRNA.exp[,cellid]
       cmRNA<-subset(mRNA.markers,cluster == z)$gene
@@ -108,14 +109,14 @@ SIGLNCOS <- function(file = NULL, Tissue = NULL, Cell_annotation = NULL, GENCODE
   cor_data<-as.data.frame(do.call(rbind,cor_data))
   colnames(cor_data)<-c("lncRNA","mRNA","cell_type","cor","p.adj")
   cor_data<-na.omit(cor_data)
-  cor_data$tumor<-tumor
+  cor_data$tumor<-Tissue
   write.table(cor_data,"lncRNA_mRNA_cor.txt",sep = "\t",quote = F,col.names = T,row.names = F)
   
   ##GSEA enrichment analysis was performed based on the sorted mRNA
   ##Read the functions used for enrichment
-  GO<-read.gmt("./contaxt/c5.go.v2022.1.Hs.symbols.gmt")
-  imm<-read.gmt("./contaxt/c7.all.v2022.1.Hs.symbols.gmt")
-  kegg<-read.gmt("./contaxt/c2.cp.kegg.v2022.1.Hs.symbols.gmt")
+  GO<-read.gmt("./context/c5.go.v2022.1.Hs.symbols.gmt")
+  imm<-read.gmt("./context/c7.all.v2022.1.Hs.symbols.gmt")
+  kegg<-read.gmt("./context/c2.cp.kegg.v2022.1.Hs.symbols.gmt")
   ##function annotation
   cor_data$cor<-as.numeric(cor_data$cor)
   cor_data$p.adj<-as.numeric(cor_data$p.adj)##Convert to a numeric type
@@ -176,9 +177,10 @@ SIGLNCOS <- function(file = NULL, Tissue = NULL, Cell_annotation = NULL, GENCODE
     celldata<-do.call(rbind,celldata)
     lnc_function<-rbind(lnc_function,celldata)
   }
-  lnc_function$tumor<-tumor
+  lnc_function$tumor<-Tissue
   write.table(lnc_function,"lncRNA_function_regulation.txt",sep = "\t",quote = F,col.names = T,row.names = F)
   
+  print("Stage 3 completed: clncRNA functional regulation been saved as lncRNA_function_regulation.txt")
   
   # ---- Stage4:Identitying co-lncRNA pairs based on functional co-regulated ----
   ##分别根据三种功能计算
@@ -249,11 +251,13 @@ SIGLNCOS <- function(file = NULL, Tissue = NULL, Cell_annotation = NULL, GENCODE
     }
     jac2$coindex<-coindex
     jac2$type<-names(func)[f]
-    jac2$tumor<-tumor
+    jac2$tumor<-Tissue
     jacmatrix2[[f]]<-jac2
   }
   co_lncRNA<-do.call(rbind,jacmatrix2)
   write.table(co_lncRNA,"co-lncRNA.txt",sep = "\t",quote = F,col.names = T,row.names = F)
+  
+  print("Stage 4 completed: co-lncRNA been saved as co-lncRNA.txt")
 }
 
 
