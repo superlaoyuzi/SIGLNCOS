@@ -85,14 +85,7 @@ conda activate siglncos
 R -e "remotes::install_github('junjunlab/ClusterGVis')"
 ```
 
-### Option 2: Docker
-
-```bash
-docker pull rocker/tidyverse:4.2.1
-docker run -v $(pwd):/workspace -it rocker/tidyverse:4.2.1 R
-```
-
-### Option 3: Manual R Installation
+### Option 2: Manual R Installation
 
 ```r
 # Install core dependencies
@@ -135,15 +128,6 @@ source("02_functions/02_density_plot.R")
 ### Raw Data Sources
 - scRNA-seq data: GEO/ArrayExpress (see Supplementary Table 1 for accession numbers)
 - Bulk RNA-seq data: TCGA (GBM, HNSCC, BC, UCEC, CRC, OV)
-
-### Processed Data
-Download from: https://figshare.com/... (DOI: 10.xxxx/xxxxxx)
-
-| File | Description |
-|------|-------------|
-| `all_colncRNA.txt` | 3,381 co-lncRNA pairs |
-| `alldelncRNA3.txt` | 667 clncRNAs with annotations |
-| `all_lnc_function.txt` | Functional annotations (GO/KEGG/Immune) |
 
 ### External Resources
 | Resource | Version | Download Date |
@@ -208,7 +192,6 @@ If you use SIGLNCOS or the sCo-Lnc database in your research, please cite:
 **Corresponding Author**: Prof. Yunpeng Zhang  
 **Email**: yunpengzhang@hrbmu.edu.cn  
 **Laboratory**: Bioinformatics Lab, Harbin Medical University  
-**Database Support**: scolnc@hrbmu.edu.cn
 
 ---
 
@@ -219,6 +202,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Last Updated**: 2026-07-01
-```
-
----
