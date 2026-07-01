@@ -170,8 +170,6 @@ SIGLNCOS/
 │   └── 02_odds_ratio.R           # Odds ratio calculation
 ├── 03_validation/                # Sensitivity analyses
 ├── 04_visualization/             # Optional visualization scripts
-├── data/                         # Data directory (user-provided)
-├── results/                      # Output directory
 ├── environment.yml               # Conda environment
 ├── LICENSE                       # MIT License
 └── README.md                     # This file
