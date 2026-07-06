@@ -1,28 +1,11 @@
 # SIGLNCOS: Single-cell lncRNA Regulatory Landscape Analysis Framework
 
 [![DOI](https://img.shields.io/badge/DOI-10.xxxx/xxxxxx-blue)](https://doi.org/10.xxxx/xxxxxx)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![R](https://img.shields.io/badge/R-4.2.1-276DC3)](https://www.r-project.org/)
 
 SIGLNCOS is a computational framework designed to systematically investigate long non-coding RNA (lncRNA) regulation at single-cell resolution. It enables the identification of cellular signature lncRNAs (clncRNAs) and the characterization of their functional and co-regulatory relationships across diverse cancer types.
 
 **Associated Paper**: *A Novel Framework for Identifying Cellular Signature LncRNAs and Their Functional Coregulatory Networks with Prognostic Implications at Single-Cell Resolution* (Journal of Advanced Research, 2026)
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Workflow](#workflow)
-- [Key Results](#key-results)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Data Availability](#data-availability)
-- [Web Platform](#web-platform)
-- [Repository Structure](#repository-structure)
-- [Citation](#citation)
-- [Contact](#contact)
-- [License](#license)
 
 ---
 
@@ -154,34 +137,7 @@ An interactive visualization platform, **sCo-Lnc**, is available for browsing, s
 ### Maintenance
 - Regular updates every 1-2 years
 - Minimum 5-year maintenance commitment
-- Contact: scolnc@hrbmu.edu.cn for issues or feedback
-
----
-
-## Repository Structure
-
-```
-SIGLNCOS/
-├── 01_core_scripts/
-│   └── 01_SIGLNCOS_pipeline.R    # Main analysis pipeline
-├── 02_functions/
-│   ├── 02_RandomWalk.R           # Random walk algorithm
-│   ├── 02_density_plot.R         # Density plot functions
-│   └── 02_odds_ratio.R           # Odds ratio calculation
-├── 03_validation/                # Sensitivity analyses
-├── 04_visualization/             # Optional visualization scripts
-├── environment.yml               # Conda environment
-├── LICENSE                       # MIT License
-└── README.md                     # This file
-```
-
----
-
-## Citation
-
-If you use SIGLNCOS or the sCo-Lnc database in your research, please cite:
-
-> Zhang Y, et al. (2026). A Novel Framework for Identifying Cellular Signature LncRNAs and Their Functional Coregulatory Networks with Prognostic Implications at Single-Cell Resolution. *Journal of Advanced Research*. DOI: 10.xxxx/xxxxxx
+- Contact: 2024020614@hrbmu.edu.cn for issues or feedback
 
 ---
 
@@ -193,10 +149,4 @@ If you use SIGLNCOS or the sCo-Lnc database in your research, please cite:
 
 ---
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-**Last Updated**: 2026-07-01
+**Last Updated**: 2026-07
