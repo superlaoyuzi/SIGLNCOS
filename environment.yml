@@ -59,7 +59,7 @@ dependencies:
   - r-rrvgo=1.10.0
 
   # Statistics
-  - r-survival=3.3.1
+  - r-survival=3.5
   - r-survminer=0.4.9
   - r-psych=2.2.9
   - r-desctools=0.99.47
