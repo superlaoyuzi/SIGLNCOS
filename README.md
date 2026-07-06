@@ -106,6 +106,16 @@ source("02_functions/02_density_plot.R")
 
 ---
 
+## Reproducibility
+
+To ensure full reproducibility of all results:
+
+- **Random seed**: `set.seed(10086)` is used throughout the analysis pipeline
+- **Environment**: All dependencies are pinned to specific versions in `environment.yml`
+- **External resources**: Versions and download dates are documented in the [External Resources](#external-resources) section
+
+---
+
 ## Data Availability
 
 ### Raw Data Sources
