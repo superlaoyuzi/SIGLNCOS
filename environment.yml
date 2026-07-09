@@ -1,5 +1,5 @@
 # ============================================================================
-# Conda environment for SIGLNCOS
+# Conda environment for SIGLNCOS (Dual-version support)
 # ============================================================================
 # Create:  conda env create -f environment.yml
 # Activate: conda activate siglncos
@@ -14,12 +14,12 @@ channels:
   - defaults
 
 dependencies:
-  # R base
-  - r-base=4.2.1
+  # R base (dual version)
+  - r-base=4.2.1  # Also compatible with 4.4.2
 
-  # Core Seurat ecosystem
-  - r-seurat=4.2.0
-  - r-harmony=0.1.0
+  # Core Seurat ecosystem (dual version support)
+  - r-seurat=4.2.0  # Also compatible with 4.4.0
+  - r-harmony=0.1.0  # v0.1.1 also available
 
   # Data manipulation
   - r-dplyr=1.0.10
@@ -44,12 +44,12 @@ dependencies:
   - r-cowplot=1.1.1
   - r-ggrepel=0.9.2
 
-  # Functional enrichment
-  - bioconductor-clusterprofiler=4.6.0
+  # Functional enrichment (dual version support)
+  - bioconductor-clusterprofiler=4.6.0  # Also compatible with 4.20.0
   - bioconductor-fgsea=1.24.0
   - bioconductor-enrichplot=1.18.0
   - bioconductor-gsea=1.20.0
-  - bioconductor-gsva=1.46.0
+  - bioconductor-gsva=1.46.0  # Also compatible with 2.6.2
   - r-msigdbr=7.5.1
 
   # Annotation
@@ -58,8 +58,8 @@ dependencies:
   - bioconductor-go.db=3.16.0
   - r-rrvgo=1.10.0
 
-  # Statistics
-  - r-survival=3.5
+  # Statistics (dual version support)
+  - r-survival=3.3-1  # Also compatible with 3.5-3
   - r-survminer=0.4.9
   - r-psych=2.2.9
   - r-desctools=0.99.47
@@ -82,10 +82,16 @@ dependencies:
   # Development tools
   - r-devtools=2.4.5
 
+  # Additional packages for dual-version support
+  - bioconductor-deseq2=1.38.3  # Also compatible with 1.52.0
+  - r-monocle=2.22.0  # Monocle2
+  - r-rlang=1.1.0
+
 # ============================================================================
 # Additional packages (install via R after activation):
 # ============================================================================
 # R -e "remotes::install_github('junjunlab/ClusterGVis')"
 # R -e "remotes::install_github('madlogos/recharts')"
 # R -e "install.packages(c('sankeyD3', 'echarts4r', 'ggtext'))"
+# R -e "remotes::install_github('xuranw/MuSiC')"  # MuSiC v1.0.0
 # ============================================================================
