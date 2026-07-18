@@ -143,7 +143,6 @@ An interactive visualization platform, **sCo-Lnc**, is available for browsing, s
 ### Maintenance
 - Regular updates every 1-2 years
 - Minimum 5-year maintenance commitment
-- Contact: 2024020614@hrbmu.edu.cn for issues or feedback
 
 ---
 
