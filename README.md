@@ -5,7 +5,7 @@
 
 SIGLNCOS is a computational framework designed to systematically investigate long non-coding RNA (lncRNA) regulation at single-cell resolution. It enables the identification of cellular signature lncRNAs (clncRNAs) and the characterization of their functional and co-regulatory relationships across diverse cancer types.
 
-**Associated Paper**: *A Novel Framework for Identifying Cellular Signature LncRNAs and Their Functional Coregulatory Networks with Prognostic Implications at Single-Cell Resolution* (Journal of Advanced Research, 2026)
+**Associated Paper**: *A Novel Framework for Identifying Cellular Signature LncRNAs and Their Functional Coregulatory Networks with Prognostic Implications at Single-Cell Resolution* (Under review, 2026)
 
 ---
 
@@ -99,10 +99,6 @@ source("02_functions/02_density_plot.R")
 # Step 3: Co-regulatory network inference
 # Step 4: Prognostic analysis
 ```
-
-### Expected runtime
-- Full analysis (31 cancer types): ~4-6 hours on HPC
-- Single cancer type: ~30-60 minutes
 
 ---
 
