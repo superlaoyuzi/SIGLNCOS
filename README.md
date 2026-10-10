@@ -42,12 +42,12 @@ Additionally, prognostic analyses (Cox regression and Kaplan-Meier) are performe
 Application of SIGLNCOS across 524,952 single cells from 31 cancer types led to the identification of:
 
 - **667 cellular signature lncRNAs (clncRNAs)** associated with immune regulation, tumor progression, and cellular differentiation
-- Functional evidence suggesting that **NEAT1** influences macrophage differentiation and cell fate decisions across cancer types (M1/M2 polarization analysis)
+- Functional evidence suggesting that **NEAT1** is associated with macrophage differentiation and cell fate decisions across cancer types (M1/M2 polarization analysis)
 - **3,381 co-regulatory clncRNA pairs** involved in key cancer-related biological pathways
 
-Co-regulatory analysis revealed complex lncRNA interaction networks that are particularly active during tumor evolution. For example, distinct co-lncRNA modules were identified in the transition from papillary thyroid carcinoma (PTC) to anaplastic thyroid carcinoma (ATC), suggesting coordinated regulatory mechanisms that cannot be explained by single lncRNAs alone.
+Co-regulatory analysis revealed complex lncRNA interaction networks that are particularly active during tumor evolution. For example, distinct co-lncRNA modules were identified between papillary thyroid carcinoma (PTC) and anaplastic thyroid carcinoma (ATC), suggesting thyroid cancer state-associated network differences that are not fully captured by individual lncRNA profiles.
 
-Importantly, co-lncRNA network-based signatures showed improved performance in patient outcome prediction compared to individual lncRNAs (e.g., NR2F1-AS1 co-regulatory networks in BLCA fibroblasts, HR increased from 1.5 to 2.0), highlighting their potential clinical utility.
+Importantly, cell-composition-adjusted survival analyses showed that selected co-lncRNA pairs provided stronger prognostic information than their individual constituent lncRNAs in specific cancer–cell-type contexts.
 
 ---
 
@@ -116,7 +116,7 @@ To ensure full reproducibility of all results:
 
 ### Raw Data Sources
 - scRNA-seq data: GEO/ArrayExpress (see Supplementary Table 1 for accession numbers)
-- Bulk RNA-seq data: TCGA (GBM, HNSCC, BC, UCEC, CRC, OV)
+- Bulk RNA-seq data: TCGA cohorts with available bulk expression and clinical survival information used for cell-composition-adjusted prognostic analysis.
 
 ### External Resources
 | Resource | Version | Download Date |
