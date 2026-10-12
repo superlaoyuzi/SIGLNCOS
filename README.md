@@ -150,7 +150,7 @@ An interactive visualization platform, **sCo-Lnc**, is available for browsing, s
 
 **Corresponding Author**: Prof. Yunpeng Zhang  
 **Email**: zhangyp@hrbmu.edu.cn  
-**Laboratory**: Bioinformatics Lab, Harbin Medical University  
+**Laboratory**: College of Bioinformatics Science and Technology, Harbin Medical University  
 
 ---
 
