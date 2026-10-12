@@ -42,7 +42,7 @@ Additionally, prognostic analyses (Cox regression and Kaplan-Meier) are performe
 Application of SIGLNCOS across 524,952 single cells from 31 cancer types led to the identification of:
 
 - **667 cellular signature lncRNAs (clncRNAs)** associated with immune regulation, tumor progression, and cellular differentiation
-- Functional evidence suggesting that **NEAT1** is associated with macrophage differentiation and cell fate decisions across cancer types (M1/M2 polarization analysis)
+- Functional evidence suggesting that **NEAT1** is associated with distinct macrophage states and immune-related functional programs across cancer types.
 - **3,381 co-regulatory clncRNA pairs** involved in key cancer-related biological pathways
 
 Co-regulatory analysis revealed complex lncRNA interaction networks that are particularly active during tumor evolution. For example, distinct co-lncRNA modules were identified between papillary thyroid carcinoma (PTC) and anaplastic thyroid carcinoma (ATC), suggesting thyroid cancer state-associated network differences that are not fully captured by individual lncRNA profiles.
