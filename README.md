@@ -149,7 +149,7 @@ An interactive visualization platform, **sCo-Lnc**, is available for browsing, s
 ## Contact
 
 **Corresponding Author**: Prof. Yunpeng Zhang  
-**Email**: yunpengzhang@hrbmu.edu.cn  
+**Email**: zhangyp@hrbmu.edu.cn  
 **Laboratory**: Bioinformatics Lab, Harbin Medical University  
 
 ---
